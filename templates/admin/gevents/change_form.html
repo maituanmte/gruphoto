@@ -1,0 +1,108 @@
+{% extends "admin/gbase_site.html" %}
+{% load i18n admin_static admin_modify %}
+{% load url from future %}
+{% load admin_urls %}
+
+{% block extrahead %}{{ block.super }}
+{% url 'admin:jsi18n' as jsi18nurl %}
+<script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/geventdetail.css" %}" />
+{% endblock %}
+
+{% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
+
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; {% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; {{ original|truncatewords:"18" }}
+</div>
+{% endblock %}
+{% endif %}
+{% block content_title %}{% if title %}<h1>Event: {{ original.title }}</h1>{% endif %}{% endblock %}
+{% block content %}<div id="content-main">
+{% block object-tools %}
+<ul class="object-tools">
+{% block object-tools-items %}
+<li><a href="delete/" class="deletelink">{% trans "Delete" %}</a></li>
+{% endblock %}
+</ul>
+{% endblock %}
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
+<div>
+{% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+{% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+{% if errors %}
+    <p class="errornote">
+    {% blocktrans count counter=errors|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+    </p>
+    {{ adminform.form.non_field_errors }}
+{% endif %}
+
+{% block field_sets %}
+{% for fieldset in adminform %}
+  {% include "admin/includes/fieldset.html" %}
+{% endfor %}
+{% endblock %}
+
+{% block after_field_sets %}
+<div id="tab_event_container">
+    <ul id="tab_event">
+        <li class="tab"><a class="active" href="#tab_one" rel="#tab_one">Detail</a></li>
+        <li class="tab"><a href="#tab_two" rel="#tab_two">{{ original.num_images }} Image(s)</a></li>
+        <li class="tab"><a href="#tab_three" rel="#tab_three">{{ original.num_member }} Member(s)</a></li>
+        <input type="submit" name="_continue" class="default" value="Save">
+    </ul>
+    <div id="event_content">
+        <div class="event_content" id="tab_one">
+            <p id="content">{{ original.description }}</p>
+            <div id="mapCanvas">jtyj7tj</div>
+            <script type="text/javascript">
+                var opt = {
+                    center: new google.maps.LatLng({{ original.latitude }}, {{ original.longitude }}),
+                    zoom: 6,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                map = new google.maps.Map(document.getElementById('mapCanvas'), opt);
+                new google.maps.Marker({
+                    position: new google.maps.LatLng({{ original.latitude }}, {{ original.longitude }}),
+                    map: map
+                });
+            </script>
+        </div>
+        <div class="event_content" id="tab_two" style="display:none">
+            {% include "admin/gevents/images.html" with static_url=static %}
+        </div>
+        <div class="event_content" id="tab_three" style="display:none">
+            {% include "admin/gevents/members.html" with static_url=static %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block inline_field_sets %}
+{% for inline_admin_formset in inline_admin_formsets %}
+    {% include inline_admin_formset.opts.template %}
+{% endfor %}
+{% endblock %}
+
+{% block after_related_objects %}{% endblock %}
+
+{% if adminform and add %}
+   <script type="text/javascript">document.getElementById("{{ adminform.first_field.id_for_label }}").focus();</script>
+{% endif %}
+
+{# JavaScript for prepopulated fields #}
+{% prepopulated_fields_js %}
+</div>
+</form></div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% load admin_urls %}
+{% for image in images %}
+<div class='imagecontainer {% cycle 'row1' 'row2' 'row3' %}'>
+    <a href="/admin/gevents/image/{{ image.id }}/"><img src="/media/{{ image.source }}" height="200" width="200"/></a>
+    <div class="hovercontainer">
+        <div class="left"><span>{{ image.num_likes }}</span> <img src="/static/admin/img/likes.png" /></div>
+        <div class="right"><span>{{ image.num_comments }}</span><img src="/static/admin/img/comments.png" /></div>
+    </div>
+</div>
+{% endfor %}

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Api test</title>
+    <style>
+        input#text {width: 250px;height: 22px;line-height: 22px;border:1px solid #999999;}
+        input[type=submit] {clear: both;}
+        h2 {text-align: center;font-size: 53px;color: maroon;}
+        h1 {color:teal;}
+        h3 {text-align: center;font-size: 45px;}
+        #main {padding: 15px;}
+        label {width: 200px;color: #666666;font-weight: bold;}
+        .clear {height: 2px;background: #999;clear: both;margin:20px 0px;}
+    </style>
+</head>
+<body>
+<h2>API GRUPHOTO</h2>
+<div class="clear"></div>
+<h3>FOR USER</h3>
+<h1>Log in</h1>
+<form method="post" action="/api/user/login">{% csrf_token %}
+    <label>Email: </label>
+    <br>
+    <input id="text" type="text" value="" name="email">
+    (Required)
+    <br>
+    <label>Password: </label>
+    <br>
+    <input id="text" type="password" value="" name="password">
+    (Required)
+    <br>
+    <label>Device token: </label>
+    <br>
+    <input id="text" type="text" value="" name="device_token">
+    <br>
+    <input type="submit" value="Log in" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Sign up</h1>
+<form enctype="multipart/form-data" method="post" action="/api/user/register">{% csrf_token %}
+    <label>Email (*): </label>
+    <br>
+    <input id="text" type="text" value="" name="email">
+    (Required)
+    <br>
+    <label>Password (*): </label>
+    <br>
+    <input id="text" type="password" value="" name="password">
+    (Required)
+    <br>
+    <label>Device token: </label>
+    <br>
+    <input id="text" type="text" value="" name="device_token">
+    <br>
+    <label>First name: </label>
+    <br>
+    <input id="text" type="text" value="" name="first_name">
+    <br>
+    <label>Last name: </label>
+    <br>
+    <input id="text" type="text" value="" name="last_name">
+    <br>
+    <label>Phone: </label>
+    <br>
+    <input id="text" type="text" value="" name="phone">
+    <br>
+    <label>Photo: </label>
+    <br>
+    <input id="photo" type="file" value="" name="photo">
+    <br>
+    <input type="submit" value="Register" name="user">
+    <input type="reset" value="Reset" name="save">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Log in via facebook</h1>
+<form method="post" action="/api/user/login_via_facebook">{% csrf_token %}
+    <label>Social id: </label>
+    <br>
+    <input id="text" type="text" value="" name="social_id">
+    (Required)
+    <br>
+    <label>Device token: </label>
+    <br>
+    <input id="text" type="text" value="" name="device_token">
+    (Required)
+    <br>
+    <label>Email: </label>
+    <br>
+    <input id="text" type="text" value="" name="email">
+    <br>
+    <label>Photo: </label>
+    <br>
+    <input id="text" type="text' value=" name="photo">
+    <br>
+    <label>First name: </label>
+    <br>
+    <input id="text" type="text" value="" name="first_name">
+    <br>
+    <label>Last name: </label>
+    <br>
+    <input id="text" type="text" value="" name="last_name">
+    <br>
+    <label>Phone: </label>
+    <br>
+    <input id="text" type="text" value="" name="phone">
+    <br>
+    <br>
+    <input type="submit" value="Log in" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Forgot Password</h1>
+<form method="post" action="/api/user/forgot_password">{% csrf_token %}
+<label>Email: </label>
+<br>
+<input id="text" type="text" value="" name="email">
+(Required)
+<br>
+<input type="submit" value="Log in" name="">
+</form>
+<div class="clear"></div>
+<h1>Get User Detail</h1>
+<form method="post" action="/api/user/get_user_detail">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>User id: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_id">
+    (Required)
+    <br>
+    <input type="submit" value="Submit" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Upload User Photo</h1>
+<form enctype="multipart/form-data"  method="post" action="/api/user/upload_user_photo">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Photo: </label>
+    <br>
+    <input id="photo" type="file" value="" name="photo">
+    (Required)
+    <input type="submit" value="Upload" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Create Event</h1>
+<form method="post" action="/api/event/create_event">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Title: </label>
+    <br>
+    <input id="title" type="text" value="" name="title">
+    (Required)
+    <br>
+    <label>Description: </label>
+    <br>
+    <input id="description" type="text' value=" name="description">
+    (Required)
+    <br>
+    <label>Latitude: </label>
+    <br>
+    <input id="latitude" type="text" value="" name="latitude">
+    (Required)
+    <br>
+    <label>Longitude: </label>
+    <br>
+    <input id="longitude" type="text" value="" name="longitude">
+    (Required)
+    <br>
+    <label>Place address: </label>
+    <br>
+    <input id="place_address" type="text" value="" name="place_address">
+    <br>
+    <label>Place name: </label>
+    <br>
+    <input id="place_name" type="text" value="" name="place_name">
+    <br>
+    <label>Time limit: </label>
+    <br>
+    <input id="time_limit" type="text" value="" name="time_limit">
+    (Required)
+    <br>
+    <label>Public: </label>
+    <br>
+    <input id="is_public" type="checkbox" checked="checked" name="is_public">
+    <br>
+    <label>Code: </label>
+    <br>
+    <input id="code" type="text" value="" name="code">
+    <br>
+    <label>Phone: </label>
+    <br>
+    <input id="phone" type="text" value="" name="phone">
+    <br>
+    <input type="submit" value="Submit" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Edit Event</h1>
+<form method="post" action="/api/event/edit_event">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="event_id" type="text" value="" name="event_id">
+    (Required)
+    <br>
+    <label>Title: </label>
+    <br>
+    <input id="title" type="text" value="" name="title">
+    (Required)
+    <br>
+    <label>Description: </label>
+    <br>
+    <input id="description" type="text' value=" name="description">
+    (Required)
+    <br>
+    <input type="submit" value="Submit" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get event detail</h1>
+<form method="post" action="/api/event/get_event_detail">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="event_id" type="text" value="" name="event_id">
+    (Required)
+    <br>
+    <input type="submit" value="Submit" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Upload Image (event gallery)</h1>
+<form enctype="multipart/form-data" method="post" action="/api/event/upload_event_image">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="text" type="text" value="" name="event_id">
+    (Required)
+    <br>
+    <label>Photo: </label>
+    <br>
+    <input id="text" type="file" value="" name="photo">
+    <br>
+    <input type="submit" value="Upload" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get detail image</h1>
+<form enctype="multipart/form-data" method="post" action="/api/event/get_photo_detail">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Image id: </label>
+    <br>
+    <input id="text" type="text" value="" name="image_id">
+    (Required)
+    <br>
+    <input type="submit" value="Upload" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Like or unlike (vote image)</h1>
+<form method="post" action="/api/event/vote_photo">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Image id: </label>
+    <br>
+    <input id="text" type="text" value="" name="image_id">
+    (Required)
+    <br>
+    <input id="text" type="checkbox" name="vote">
+    <label>Liked ?: </label>
+    <br>
+    <input type="submit" value="Vote" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Join event</h1>
+<form method="post" action="/api/event/join_event">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="text" type="text" value="" name="event_id">
+    (Required)
+    <br>
+    <label>Code: </label>
+    <br>
+    <input id="text" type="text" value="" name="code">
+    <br>
+    <input type="submit" value="Join" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Leave event</h1>
+<form method="post" action="/api/event/leave_event">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="text" type="text" value="" name="event_id">
+    (Required)
+    <br>
+    <input type="submit" value="Leave" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>List joined user in event</h1>
+<form method="post" action="/api/event/get_join_user_list">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="text" type="text" value="" name="event_id">
+    (Required)
+    <br>
+    <input type="submit" value="Submit" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>List of my owner events</h1>
+<form method="post" action="/api/event/get_list_own_events">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>List of user events</h1>
+<form method="post" action="/api/event/get_list_user_events">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>User id: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_id">
+    (Required)
+    <br>
+    <input type="submit" value="Submit" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Set public status of event</h1>
+<form method="post" action="/api/event/set_status_event">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="text" type="text" value="" name="event_id">
+    (Required)
+    <br>
+    <input id="text" type="checkbox" name="is_public">
+    <label>Is public? </label>
+    <br>
+    <label>Code: </label>
+    <br>
+    <input id="text" type="text" value="" name="code">
+    <br>
+    <input type="submit" value="Submit" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Followed or Unfollowed</h1>
+<form method="post" action="/api/user/set_follow_user">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Friend id: </label>
+    <br>
+    <input id="text" type="text" value="" name="friend_id">
+    (Required)
+    <br>
+    <label>Follow? </label>
+    <br>
+    <input id="text" type="radio" checked="checked" value="1" name="followed">
+    <label>Followed </label>
+    <br>
+    <input id="text" type="radio" value="0" name="followed">
+    <label>UnFollowed </label>
+    <br>
+    <input type="submit" value="Submit" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Delete image</h1>
+<form method="post" action="/api/event/delete_image">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="text" type="text" value="" name="event_id">
+    (Required)
+    <br>
+    <label>Image id: </label>
+    <br>
+    <input id="text" type="text" value="" name="image_id">
+    (Required)
+    <br>
+    <input type="submit" value="Submit" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get list of his own image</h1>
+<form method="post" action="/api/event/get_user_photos">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>User id: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_id">
+    (Required)
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get list of user's images</h1>
+<form method="post" action="/api/event/get_own_photos">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Comment</h1>
+<form method="post" action="/api/image/comment">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Image id: </label>
+    <br>
+    <input id="text" type="text" value="" name="image_id">
+    (Required)
+    <br>
+    <label>Parent comment id: </label>
+    <br>
+    <input id="text" type="text" value="" name="parent_comment_id">
+    <br>
+    <label>Content: </label>
+    <br>
+    <textarea name="content"></textarea>
+    <br>
+    <input type="submit" value="Comment" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get live events</h1>
+<form method="post" action="/api/event/get_live_events">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Set Posted event</h1>
+<form method="post" action="/api/event/set_posted_event">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="text" type="text" value="" name="event_id">
+    (Required)
+    <br>
+    <input type="submit" value="Posted" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get Posted events</h1>
+<form method="post" action="/api/event/get_posted_events">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get Unpublished events</h1>
+<form method="post" action="/api/event/get_unpublished_events">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get Joinable events</h1>
+<form method="post" action="/api/event/get_joinable_events">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>Latitude: </label>
+    <br>
+    <input id="text" type="text" value="" name="latitude">
+    (Required)
+    <br>
+    <label>Longitude: </label>
+    <br>
+    <input id="text" type="text" value="" name="longitude">
+    (Required)
+    <br>
+    <label>Distance: </label>
+    <br>
+    <input id="text" type="text" value="" name="distance">
+    (Required)
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Set abused event report</h1>
+<form method="post" action="/api/user/set_abused_reports">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>User id: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_id">
+    (Required)
+    <br>
+    <label>to: </label>
+    <br>
+    <input id="text" type="text" value="tamirkeren1@gmail.com" name="to">
+    (Required)
+    <br>
+    <label>cc: </label>
+    <br>
+    <input id="text" type="text" value="" name="cc">
+    <br>
+    <label>Bcc: </label>
+    <br>
+    <input id="text" type="text" value="" name="bcc">
+    <br>
+    <textarea name="content"></textarea>
+    (Required)
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get His followers</h1>
+<form method="post" action="/api/user/get_list_owner_followers">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+<h1>Get user followers</h1>
+<form method="post" action="/api/user/get_list_user_followers">{% csrf_token %}
+    <label>User Token: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_token">
+    (Required) - User token of whom is logging in
+    <br>
+    <label>User id: </label>
+    <br>
+    <input id="text" type="text" value="" name="user_id">
+    (Required)
+    <br>
+    <input type="submit" value="Get" name="">
+    <br>
+</form>
+<div class="clear"></div>
+</body>
+</html>

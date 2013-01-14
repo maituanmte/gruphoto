@@ -1,0 +1,11 @@
+#changelist-search{
+	float:right;
+	
+}
+
+
+#changelist-search .small{
+	float:left;
+	line-height:24px;
+	margin-right: 10px;
+}

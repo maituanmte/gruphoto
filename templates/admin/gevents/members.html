@@ -1,0 +1,9 @@
+{% for member in members %}
+<div class='imagecontainer {% cycle 'row1' 'row2' 'row3' %}'>
+    <a class="link_image" href="/admin/gauth{{ member.get_absolute_url }}"><img src="/media/{{ member.photo }}" height="150" width="122"/></a>
+    <div class='info'>
+        <p class="full_name"><a href="/admin/gauth{{ member.get_absolute_url }}">{{ member }}</a></p>
+        <p class="full_name">{{ member.first_login }}</p>
+    </div>
+</div>
+{% endfor %}
