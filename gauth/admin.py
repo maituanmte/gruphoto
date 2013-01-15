@@ -1,6 +1,6 @@
 from django.contrib.auth.admin import UserAdmin
 import gadmin
-from gauth.models import User, AbuseReport
+from gauth.models import User
 from django.contrib import admin
 from gauth.forms import UserChangeForm, UserCreationForm
 from django.utils.encoding import force_unicode
@@ -219,62 +219,4 @@ class GUserAdmin(UserAdmin):
         more.update(extra_context or {})
         return super(GUserAdmin, self).change_view(request, object_id, form_url, more)
 
-class AbusedEventAdmin(admin.ModelAdmin):
-    search_fields = ('to', 'subject')
-    list_display = ('user', 'reporter', 'to', 'subject',)
-#    date_hierarchy = ('created_date',)
-
-    def log_addition(self, request, obj):
-        """
-        Log that an object has been successfully added.
-
-        The default implementation creates an admin LogEntry object.
-        """
-        from gadmin.models import LogEntry, ADDITION
-        from django.contrib.contenttypes.models import ContentType
-        from django.utils.encoding import force_unicode
-        LogEntry.objects.log_action(
-            user_id         = request.user.pk,
-            content_type_id = ContentType.objects.get_for_model(obj).pk,
-            object_id       = obj.pk,
-            object_repr     = force_unicode(obj),
-            action_flag     = ADDITION
-        )
-
-    def log_change(self, request, obj, message):
-        """
-        Log that an object has been successfully changed.
-
-        The default implementation creates an admin LogEntry object.
-        """
-        from gadmin.models import LogEntry, CHANGE
-        from django.contrib.contenttypes.models import ContentType
-        from django.utils.encoding import force_unicode
-        LogEntry.objects.log_action(
-            user_id         = request.user.pk,
-            content_type_id = ContentType.objects.get_for_model(obj).pk,
-            object_id       = obj.pk,
-            object_repr     = force_unicode(obj),
-            action_flag     = CHANGE,
-            change_message  = message
-        )
-
-    def log_deletion(self, request, obj, object_repr):
-        """
-        Log that an object will be deleted. Note that this method is called
-        before the deletion.
-
-        The default implementation creates an admin LogEntry object.
-        """
-        from gadmin.models import LogEntry, DELETION
-        from django.contrib.contenttypes.models import ContentType
-        LogEntry.objects.log_action(
-            user_id         = request.user.id,
-            content_type_id = ContentType.objects.get_for_model(self.model).pk,
-            object_id       = obj.pk,
-            object_repr     = object_repr,
-            action_flag     = DELETION
-        )
-
-gadmin.site.register(AbuseReport, AbusedEventAdmin)
 gadmin.site.register(User, GUserAdmin)

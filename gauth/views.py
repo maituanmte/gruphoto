@@ -1,4 +1,4 @@
-from gauth.models import User, UserFriend, AbuseReport, NONE, HIGH, MIDDLE, LOWER
+from gauth.models import User, UserFriend
 from django.conf import settings
 from gruphoto import save_file
 from gruphoto import json_http
@@ -9,9 +9,9 @@ from gruphoto.errors import NO_ERROR, \
      USER_BLOCKED, USER_BLOCKED_MESSAGE,\
      DEVICE_TOKEN_NOT_SET, DEVICE_TOKEN_NOT_SET_MESSAGE
 from gruphoto.fields import EMAIL, PASSWORD, FIRST_NAME, LAST_NAME, PHONE, PHOTO, USER_TOKEN, NUM_FOLLOWER, \
-     NUM_LIKE, NUM_PHOTO, DEVICE_TOKEN, SOCIAL_ID, USER_ID, FOLLOWED, NUM_EVENT, TO, CC, BCC, REPORT_ID, CONTENT
+     NUM_LIKE, NUM_PHOTO, DEVICE_TOKEN, SOCIAL_ID, USER_ID, FOLLOWED, NUM_EVENT
 import gauth
-from gruphoto.decorator import require_http_post, login_require, friend_id_require, user_id_require
+from gruphoto.decorator import require_http_post, login_require, friend_id_require, user_id_require, event_id_require
 
 from django.contrib.auth.tokens import default_token_generator
 
@@ -317,48 +317,3 @@ def get_list_user_followers(request):
         response_data[ERROR_MESSAGE] = UNKNOWN_ERROR_MESSAGE
 
     return  json_http(response_data)
-
-@user_id_require
-@login_require
-@require_http_post
-def set_abused_reports(request):
-    to = request.POST.get(TO, '') or 'tamirkeren1@gmail.com'
-    cc = request.POST.get(CC, '')
-    bcc = request.POST.get(BCC, '')
-    content = request.POST.get(CONTENT, '')
-    if not content:
-        return json_http(None)
-    abused_user_id = request.POST.get(USER_ID, '')
-
-    response_data = {ERROR_CODE:NO_ERROR}
-    try:
-        abused_user = User.objects.get(pk=abused_user_id)
-        report, created = AbuseReport.objects.get_or_create(user_id = abused_user_id, reporter_id = request.user.id)
-        report.to = to
-        report.cc = cc
-        report.bcc = bcc
-        report.content = content
-        report.user = abused_user
-        report.reporter = request.user
-
-        if created:
-            abused_user.num_reports+=1
-            if abused_user.num_reports > 1 and abused_user.num_reports <=5:
-                abused_user.level = LOWER
-            elif abused_user.num_reports > 5 and abused_user.num_reports <=10:
-                abused_user.level = MIDDLE
-            elif abused_user.num_reports > 10:
-                abused_user.level = HIGH
-            abused_user.save()
-        report.save()
-
-        response_data[REPORT_ID] = report.id
-        response_data[TO] = report.to
-        response_data[CC] = report.cc
-        response_data[BCC] = report.bcc
-        response_data[CONTENT] = report.content
-    except:
-        response_data[ERROR_CODE] = UNKNOWN_ERROR
-        response_data[ERROR_MESSAGE] = UNKNOWN_ERROR_MESSAGE
-
-    return json_http(response_data)

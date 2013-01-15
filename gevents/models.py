@@ -48,3 +48,14 @@ class Image_Like(models.Model):
     image = models.ForeignKey(Image, related_name='image+')
     user = models.ForeignKey(User, related_name='user+')
     vote = models.BooleanField(default=True)
+
+class AbuseReport(models.Model):
+    to = models.EmailField(max_length=200)
+    cc = models.CharField(max_length=1000)
+    bcc = models.CharField(max_length=1000)
+    subject = models.CharField(max_length=1000)
+    content = models.TextField()
+    created_date = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, related_name='user+')
+    reporter = models.ForeignKey(User, related_name='reporter+')
+    event = models.ForeignKey(Event, related_name='event+')

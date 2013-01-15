@@ -1,7 +1,7 @@
-from gevents.models import Event, Image, EventUser, Image_Like
-from gauth.models import User, UserFriend
+from gevents.models import Event, Image, EventUser, Image_Like, AbuseReport
+from gauth.models import User, UserFriend, HIGH, MIDDLE, LOWER
 from gcomments.models import Comment
-from math import radians, cos, sin, asin, sqrt, degrees, acos, atan2
+from math import radians, cos, sqrt
 from django.conf import settings
 from gruphoto import save_file
 from datetime import datetime
@@ -16,7 +16,7 @@ from gruphoto.errors import NO_ERROR, UNKNOWN_ERROR, UNKNOWN_ERROR_MESSAGE, ERRO
 from gruphoto.fields import FIRST_NAME, LAST_NAME, PHONE, PHOTO, NUM_FOLLOWER,\
     NUM_LIKE, NUM_PHOTO, USER_ID, NUM_MEMBER, LONGITUDE, LATITUDE, DISTANCE, \
     PLACE_ADDRESS, TIME_LIMIT, EVENT_ID, TITLE, NAME, DESCRIPTION, PLACE_NAME, CREATED_DATE, IMAGE_ID,\
-    IS_PUBLIC, SOURCE, CODE, CONTENT, VOTE, NUM_COMMENT, NUM_EVENT
+    IS_PUBLIC, SOURCE, CODE, CONTENT, VOTE, NUM_COMMENT, NUM_EVENT, TO, CC, BCC, REPORT_ID, CONTENT
 from gruphoto.decorator import require_http_post, login_require, event_id_require, image_id_require, user_id_require
 
 
@@ -811,6 +811,50 @@ def get_unpublished_events(request):
                 event_list.append(event_item)
 
         response_data['events'] = event_list
+    except:
+        response_data[ERROR_CODE] = UNKNOWN_ERROR
+        response_data[ERROR_MESSAGE] = UNKNOWN_ERROR_MESSAGE
+
+    return json_http(response_data)
+
+@user_id_require
+@event_id_require
+@login_require
+@require_http_post
+def set_abused_reports(request):
+    to = request.POST.get(TO, '') or 'tamirkeren1@gmail.com'
+    cc = request.POST.get(CC, '')
+    bcc = request.POST.get(BCC, '')
+    content = request.POST.get(CONTENT, '')
+    if not content:
+        return json_http(None)
+    abused_user_id = request.POST.get(USER_ID, '')
+
+    response_data = {ERROR_CODE:NO_ERROR}
+    try:
+        abused_user = User.objects.get(pk=abused_user_id)
+        report, created = AbuseReport.objects.get_or_create(user = abused_user, reporter = request.user, event=request.event)
+        report.to = to
+        report.cc = cc
+        report.bcc = bcc
+        report.content = content
+
+        if created:
+            abused_user.num_reports+=1
+            if abused_user.num_reports > 1 and abused_user.num_reports <=5:
+                abused_user.level = LOWER
+            elif abused_user.num_reports > 5 and abused_user.num_reports <=10:
+                abused_user.level = MIDDLE
+            elif abused_user.num_reports > 10:
+                abused_user.level = HIGH
+            abused_user.save()
+        report.save()
+
+        response_data[REPORT_ID] = report.id
+        response_data[TO] = report.to
+        response_data[CC] = report.cc
+        response_data[BCC] = report.bcc
+        response_data[CONTENT] = report.content
     except:
         response_data[ERROR_CODE] = UNKNOWN_ERROR
         response_data[ERROR_MESSAGE] = UNKNOWN_ERROR_MESSAGE

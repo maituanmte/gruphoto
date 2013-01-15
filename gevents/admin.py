@@ -14,9 +14,9 @@ from django.template.response import TemplateResponse
 from gevents.forms import DetailEventForm
 from django.contrib.admin.templatetags.admin_static import static
 from django.utils.decorators import method_decorator
-from django.db import models, transaction, router
+from django.db import transaction
 from django.views.decorators.csrf import csrf_protect
-from gevents.models import Image, EventUser
+from gevents.models import Image, EventUser, AbuseReport
 from gcomments.models import Comment
 
 csrf_protect_m = method_decorator(csrf_protect)
@@ -167,6 +167,64 @@ class ImageAdmin(admin.ModelAdmin):
         more['comments'] = comments
         more['event'] = image.event
         return super(ImageAdmin, self).change_view(request, object_id, form_url, more)
+
+class AbusedEventAdmin(admin.ModelAdmin):
+    search_fields = ('to', 'subject')
+    list_display = ('user', 'reporter', 'to', 'subject',)
+    #    date_hierarchy = ('created_date',)
+
+    def log_addition(self, request, obj):
+        """
+        Log that an object has been successfully added.
+
+        The default implementation creates an admin LogEntry object.
+        """
+        from gadmin.models import LogEntry, ADDITION
+        from django.contrib.contenttypes.models import ContentType
+        from django.utils.encoding import force_unicode
+        LogEntry.objects.log_action(
+            user_id         = request.user.pk,
+            content_type_id = ContentType.objects.get_for_model(obj).pk,
+            object_id       = obj.pk,
+            object_repr     = force_unicode(obj),
+            action_flag     = ADDITION
+        )
+
+    def log_change(self, request, obj, message):
+        """
+        Log that an object has been successfully changed.
+
+        The default implementation creates an admin LogEntry object.
+        """
+        from gadmin.models import LogEntry, CHANGE
+        from django.contrib.contenttypes.models import ContentType
+        from django.utils.encoding import force_unicode
+        LogEntry.objects.log_action(
+            user_id         = request.user.pk,
+            content_type_id = ContentType.objects.get_for_model(obj).pk,
+            object_id       = obj.pk,
+            object_repr     = force_unicode(obj),
+            action_flag     = CHANGE,
+            change_message  = message
+        )
+
+    def log_deletion(self, request, obj, object_repr):
+        """
+        Log that an object will be deleted. Note that this method is called
+        before the deletion.
+
+        The default implementation creates an admin LogEntry object.
+        """
+        from gadmin.models import LogEntry, DELETION
+        from django.contrib.contenttypes.models import ContentType
+        LogEntry.objects.log_action(
+            user_id         = request.user.id,
+            content_type_id = ContentType.objects.get_for_model(self.model).pk,
+            object_id       = obj.pk,
+            object_repr     = object_repr,
+            action_flag     = DELETION
+        )
     
 gadmin.site.register(Event, EventAdmin)
 gadmin.site.register(Image, ImageAdmin)
+gadmin.site.register(AbuseReport, AbusedEventAdmin)

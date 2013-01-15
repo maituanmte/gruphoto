@@ -3,12 +3,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from gauth.views import register, login, login_via_facebook, forgot_password, get_user_detail,\
-     upload_user_photo, set_follow_user, set_abused_reports, get_list_owner_followers, get_list_user_followers
+     upload_user_photo, set_follow_user, get_list_owner_followers, get_list_user_followers
 
 from gevents.views import get_live_events, get_event_detail, get_photo_detail, vote_photo,\
      get_join_user_list, set_status_event, join_event, leave_event, create_event, edit_event, upload_event_image,\
      get_list_own_events, get_list_user_events, delete_image, get_own_photos, get_user_photos,\
-     get_joinable_events, get_posted_events, set_posted_event, get_unpublished_events
+     get_joinable_events, get_posted_events, set_posted_event, get_unpublished_events, set_abused_reports
 from gcomments.views import comment
 from testform.views import test
 
@@ -25,7 +25,6 @@ urlpatterns = patterns('',
     url(r'^api/user/get_user_detail$', get_user_detail, name='get_user_detail'),
     url(r'^api/user/upload_user_photo$', upload_user_photo, name='upload_user_photo'),
     url(r'^api/user/set_follow_user$', set_follow_user, name='set_follow_user'),
-    url(r'^api/user/set_abused_reports$', set_abused_reports, name='set_abused_reports'),
     url(r'^api/user/get_list_owner_followers$', get_list_owner_followers, name='get_list_owner_followers'),
     url(r'^api/user/get_list_user_followers$', get_list_user_followers, name='get_list_user_followers'),
 
@@ -50,6 +49,7 @@ urlpatterns = patterns('',
     url(r'^api/event/delete_image$', delete_image, name='delete_image'),
     url(r'^api/event/get_own_photos$', get_own_photos, name='get_own_photos'),
     url(r'^api/event/get_user_photos$', get_user_photos, name='get_user_photos'),
+    url(r'^api/event/set_abused_reports$', set_abused_reports, name='set_abused_reports'),
 
     url(r'^api/image/comment$', comment, name='comment'),
 

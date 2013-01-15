@@ -579,7 +579,7 @@
 </form>
 <div class="clear"></div>
 <h1>Set abused event report</h1>
-<form method="post" action="/api/user/set_abused_reports">{% csrf_token %}
+<form method="post" action="/api/event/set_abused_reports">{% csrf_token %}
     <label>User Token: </label>
     <br>
     <input id="text" type="text" value="" name="user_token">
@@ -588,6 +588,11 @@
     <label>User id: </label>
     <br>
     <input id="text" type="text" value="" name="user_id">
+    (Required)
+    <br>
+    <label>Event id: </label>
+    <br>
+    <input id="text" type="text" value="" name="event_id">
     (Required)
     <br>
     <label>to: </label>
@@ -602,6 +607,8 @@
     <label>Bcc: </label>
     <br>
     <input id="text" type="text" value="" name="bcc">
+    <br>
+    <label>Content: </label>
     <br>
     <textarea name="content"></textarea>
     (Required)

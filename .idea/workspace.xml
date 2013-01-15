@@ -25,39 +25,105 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gauth/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="77" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gauth/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="75" column="14" selection-start="2951" selection-end="3084" vertical-scroll-proportion="0.745283">
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gevents/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="839" column="32" selection-start="31004" selection-end="31004" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#75#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gruphoto/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="20" selection-start="3436" selection-end="3441" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testform/templates/test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="610" column="19" selection-start="17809" selection-end="17809" vertical-scroll-proportion="-11.583333">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gauth/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="219" column="86" selection-start="9024" selection-end="9024" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#47#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gevents/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="212" column="29" selection-start="8401" selection-end="8401" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gruphoto/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="140" column="18" selection-start="5305" selection-end="5305" vertical-scroll-proportion="0.0">
+            <state line="154" column="16" selection-start="5725" selection-end="5725" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gruphoto/wsgi.py">
+      <file leaf-file-name="gbase.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/gbase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="45" selection-start="696" selection-end="718" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gauth/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="129" selection-start="1728" selection-end="1728" vertical-scroll-proportion="0.37375414">
+            <state line="72" column="23" selection-start="3206" selection-end="3206" vertical-scroll-proportion="-7.3333335">
               <folding>
-                <element signature="e#0#47#0" expanded="true" />
+                <marker date="1358243608758" expanded="true" signature="515:585" placeholder="{% block stylesheet_ie ... %}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gevents/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="17" selection-start="2302" selection-end="2313" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,30 +139,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/grouphoto/settings.py" />
-        <option value="$PROJECT_DIR$/grouphoto/errors.py" />
-        <option value="$PROJECT_DIR$/gauth/forms.py" />
-        <option value="$PROJECT_DIR$/gauth/models.py" />
-        <option value="$PROJECT_DIR$/gevents/models.py" />
-        <option value="$PROJECT_DIR$/testform/templates/test.html" />
         <option value="$PROJECT_DIR$/templates/admin/gauth/change_form.html" />
         <option value="$PROJECT_DIR$/gauth/middleware.py" />
-        <option value="$PROJECT_DIR$/gauth/views.py" />
         <option value="$PROJECT_DIR$/gcomments/views.py" />
-        <option value="$PROJECT_DIR$/gevents/views.py" />
         <option value="$PROJECT_DIR$/gruphoto/decorator.py" />
-        <option value="$PROJECT_DIR$/gruphoto/settings.py" />
         <option value="$PROJECT_DIR$/gruphoto/wsgi.py" />
         <option value="$PROJECT_DIR$/manage.py" />
+        <option value="$PROJECT_DIR$/gevents/models.py" />
+        <option value="$PROJECT_DIR$/gauth/models.py" />
+        <option value="$PROJECT_DIR$/gevents/views.py" />
+        <option value="$PROJECT_DIR$/gruphoto/urls.py" />
         <option value="$PROJECT_DIR$/gauth/admin.py" />
+        <option value="$PROJECT_DIR$/gevents/admin.py" />
+        <option value="$PROJECT_DIR$/testform/templates/test.html" />
+        <option value="$PROJECT_DIR$/gruphoto/settings.py" />
+        <option value="$PROJECT_DIR$/templates/admin/gbase.html" />
+        <option value="$PROJECT_DIR$/gauth/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="-4" />
-    <option name="width" value="1026" />
-    <option name="height" value="773" />
+    <option name="y" value="24" />
+    <option name="width" value="1024" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -124,7 +189,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -153,7 +217,71 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="testform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
               <option name="myItemId" value="gruphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gruphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gruphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gruphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gruphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gruphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gruphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gruphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gruphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gevents" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -173,6 +301,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -379,14 +508,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="-4" width="1026" height="773" extended-state="6" />
+    <frame x="0" y="24" width="1024" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295688" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3470226" sideWeight="0.9983766" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24948665" sideWeight="0.9983766" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -454,39 +583,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gevents/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="11" selection-start="1012" selection-end="1012" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gevents/widgets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gauth/middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="17" selection-start="418" selection-end="418" vertical-scroll-proportion="-0.9836066" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gauth/signals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gauth/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="16" selection-start="311" selection-end="311" vertical-scroll-proportion="-1.4754099" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gcomments/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="14" selection-start="337" selection-end="337" vertical-scroll-proportion="-1.2295082" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gevents/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="1.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gevents/forms.py">
@@ -494,19 +593,9 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="1.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gevents/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gevents/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gevents/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="11" selection-start="1012" selection-end="1012" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gevents/widgets.py">
@@ -514,32 +603,100 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gruphoto/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="140" column="18" selection-start="5305" selection-end="5305" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gruphoto/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="45" selection-start="696" selection-end="718" vertical-scroll-proportion="0.0">
+        <state line="17" column="45" selection-start="696" selection-end="718" vertical-scroll-proportion="0.41463414">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
+        <state line="10" column="0" selection-start="251" selection-end="251" vertical-scroll-proportion="0.2195122">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gauth/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="77" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gevents/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="17" selection-start="2302" selection-end="2313" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gevents/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="839" column="32" selection-start="31004" selection-end="31004" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gruphoto/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="20" selection-start="3436" selection-end="3441" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gauth/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="129" selection-start="1728" selection-end="1728" vertical-scroll-proportion="0.37375414">
+        <state line="219" column="86" selection-start="9024" selection-end="9024" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gevents/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="212" column="29" selection-start="8401" selection-end="8401" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testform/templates/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="610" column="19" selection-start="17809" selection-end="17809" vertical-scroll-proportion="-11.583333">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gruphoto/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="16" selection-start="5725" selection-end="5725" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/gbase.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="23" selection-start="3206" selection-end="3206" vertical-scroll-proportion="-7.3333335">
+          <folding>
+            <marker date="1358243608758" expanded="true" signature="515:585" placeholder="{% block stylesheet_ie ... %}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gauth/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="14" selection-start="2951" selection-end="3084" vertical-scroll-proportion="0.745283">
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User, UserManager, _user_get_all_permissions
+from django.contrib.auth.models import UserManager, _user_get_all_permissions
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.core.mail import send_mail
@@ -220,16 +220,5 @@ class UserFriend(models.Model):
     user = models.ForeignKey(User, related_name='user+')
     friend = models.ForeignKey(User, related_name='friend+')
     type = models.IntegerField(default=FOLLOWER)
-
-class AbuseReport(models.Model):
-    to = models.EmailField(max_length=200)
-    cc = models.CharField(max_length=1000)
-    bcc = models.CharField(max_length=1000)
-    subject = models.CharField(max_length=1000)
-    content = models.TextField()
-    created_date = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, related_name='user+')
-    reporter = models.ForeignKey(User, related_name='reporter+')
-#    event = models.ForeignKey(Event, related_name='event+')
     
 
