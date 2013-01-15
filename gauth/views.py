@@ -1,17 +1,17 @@
 from gauth.models import User, UserFriend, AbuseReport, NONE, HIGH, MIDDLE, LOWER
 from django.conf import settings
-from grouphoto import save_file
-from grouphoto import json_http
-from grouphoto.errors import NO_ERROR, \
+from gruphoto import save_file
+from gruphoto import json_http
+from gruphoto.errors import NO_ERROR, \
      WRONG_EMAIL, WRONG_EMAIL_MESSAGE, EMAIL_EXISTED, EMAIL_EXISTED_MESSAGE,\
      UNKNOWN_ERROR, UNKNOWN_ERROR_MESSAGE, ERROR_CODE, ERROR_MESSAGE, \
      WRONG_EMAIL_OR_PASSWORD, WRONG_EMAIL_OR_PASSWORD_MESSAGE,\
      USER_BLOCKED, USER_BLOCKED_MESSAGE,\
      DEVICE_TOKEN_NOT_SET, DEVICE_TOKEN_NOT_SET_MESSAGE
-from grouphoto.fields import EMAIL, PASSWORD, FIRST_NAME, LAST_NAME, PHONE, PHOTO, USER_TOKEN, NUM_FOLLOWER, \
+from gruphoto.fields import EMAIL, PASSWORD, FIRST_NAME, LAST_NAME, PHONE, PHOTO, USER_TOKEN, NUM_FOLLOWER, \
      NUM_LIKE, NUM_PHOTO, DEVICE_TOKEN, SOCIAL_ID, USER_ID, FOLLOWED, NUM_EVENT, TO, CC, BCC, REPORT_ID, CONTENT
 import gauth
-from grouphoto.decorator import require_http_post, login_require, friend_id_require, user_id_require
+from gruphoto.decorator import require_http_post, login_require, friend_id_require, user_id_require
 
 from django.contrib.auth.tokens import default_token_generator
 

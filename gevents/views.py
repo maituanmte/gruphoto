@@ -3,21 +3,21 @@ from gauth.models import User, UserFriend
 from gcomments.models import Comment
 from math import radians, cos, sin, asin, sqrt, degrees, acos, atan2
 from django.conf import settings
-from grouphoto import save_file
+from gruphoto import save_file
 from datetime import datetime
-from grouphoto import json_http
+from gruphoto import json_http
 import socket, ssl, json, struct
 
-from grouphoto.errors import NO_ERROR, UNKNOWN_ERROR, UNKNOWN_ERROR_MESSAGE, ERROR_CODE, ERROR_MESSAGE, \
+from gruphoto.errors import NO_ERROR, UNKNOWN_ERROR, UNKNOWN_ERROR_MESSAGE, ERROR_CODE, ERROR_MESSAGE, \
     EVENT_CODE_NOT_SET, EVENT_CODE_NOT_SET_MESSAGE, \
     NO_PERMISSION, NO_PERMISSION_MESSAGE,\
     EVENT_BLOCKED, EVENT_BLOCKED_MESSAGE, \
     EVENT_BLOCKED_USER, EVENT_BLOCKED_USER_MESSAGE
-from grouphoto.fields import FIRST_NAME, LAST_NAME, PHONE, PHOTO, NUM_FOLLOWER,\
+from gruphoto.fields import FIRST_NAME, LAST_NAME, PHONE, PHOTO, NUM_FOLLOWER,\
     NUM_LIKE, NUM_PHOTO, USER_ID, NUM_MEMBER, LONGITUDE, LATITUDE, DISTANCE, \
     PLACE_ADDRESS, TIME_LIMIT, EVENT_ID, TITLE, NAME, DESCRIPTION, PLACE_NAME, CREATED_DATE, IMAGE_ID,\
     IS_PUBLIC, SOURCE, CODE, CONTENT, VOTE, NUM_COMMENT, NUM_EVENT
-from grouphoto.decorator import require_http_post, login_require, event_id_require, image_id_require, user_id_require
+from gruphoto.decorator import require_http_post, login_require, event_id_require, image_id_require, user_id_require
 
 
 @login_require

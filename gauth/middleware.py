@@ -3,13 +3,13 @@ from gauth.models import User
 from gevents.models import Event, Image
 from gcomments.models import Comment
 from django.utils.functional import SimpleLazyObject
-from grouphoto import json_http
-from grouphoto.errors import USER_NOT_FOUND, USER_NOT_FOUND_MESSAGE, USER_BLOCKED, USER_BLOCKED_MESSAGE, \
+from gruphoto import json_http
+from gruphoto.errors import USER_NOT_FOUND, USER_NOT_FOUND_MESSAGE, USER_BLOCKED, USER_BLOCKED_MESSAGE, \
      FRIEND_NOT_FOUND, FRIEND_NOT_FOUND_MESSAGE, FRIEND_BLOCKED, FRIEND_BLOCKED_MESSAGE, \
      EVENT_NOT_FOUND, EVENT_NOT_FOUND_MESSAGE, EVENT_BLOCKED, EVENT_BLOCKED_MESSAGE, \
      IMAGE_NOT_FOUND, IMAGE_NOT_FOUND_MESSAGE, PARENT_COMMENT_NOT_FOUND, PARENT_COMMENT_NOT_FOUND_MESSAGE, \
      ERROR_MESSAGE, ERROR_CODE
-from grouphoto.fields import USER_TOKEN, FRIEND_ID, IMAGE_ID, USER_ID, PARENT_COMMENT_ID, EVENT_ID
+from gruphoto.fields import USER_TOKEN, FRIEND_ID, IMAGE_ID, USER_ID, PARENT_COMMENT_ID, EVENT_ID
 
 
 

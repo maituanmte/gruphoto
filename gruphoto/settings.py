@@ -1,4 +1,4 @@
-# Django settings for grouphoto project.
+# Django settings for gruphoto project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -57,7 +57,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/mte/PycharmProjects/grouphoto/media/'
+MEDIA_ROOT = '/home/mte/PycharmProjects/gruphoto/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -68,7 +68,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/mte/PycharmProjects/grouphoto/static'
+STATIC_ROOT = '/home/mte/PycharmProjects/gruphoto/static'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -78,9 +78,9 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    '/home/mte/PycharmProjects/grouphoto/static/admin/css',
-    '/home/mte/PycharmProjects/grouphoto/static/admin/js',
-    '/home/mte/PycharmProjects/grouphoto/static/admin/img',
+    '/home/mte/PycharmProjects/gruphoto/static/admin/css',
+    '/home/mte/PycharmProjects/gruphoto/static/admin/js',
+    '/home/mte/PycharmProjects/gruphoto/static/admin/img',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -115,14 +115,14 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'grouphoto.urls'
+ROOT_URLCONF = 'gruphoto.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'grouphoto.wsgi.application'
+WSGI_APPLICATION = 'gruphoto.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/home/mte/PycharmProjects/grouphoto/templates',
-    '/home/mte/PycharmProjects/grouphoto/testform/templates',
+    '/home/mte/PycharmProjects/gruphoto/templates',
+    '/home/mte/PycharmProjects/gruphoto/testform/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

@@ -37,7 +37,6 @@ class GUserAdmin(UserAdmin):
 
     fieldsets = (
         (None, {'fields': ('photo', 'email', 'password', 'first_name', 'last_name', 'is_active' , 'last_login', 'first_login')}),
-        ('Important',{})
     )
 
     add_fieldsets = (

@@ -1,7 +1,7 @@
 from functools import wraps
 from django.utils.decorators import available_attrs
-from grouphoto import json_http
-from grouphoto.errors import    POST_METHOD_ERROR, POST_METHOD_ERROR_MESSAGE, \
+from gruphoto import json_http
+from gruphoto.errors import    POST_METHOD_ERROR, POST_METHOD_ERROR_MESSAGE, \
                                 GET_METHOD_ERROR,GET_METHOD_ERROR_MESSAGE,\
                                 ERROR_MESSAGE, ERROR_CODE,\
                                 USER_NOT_FOUND, USER_NOT_FOUND_MESSAGE, \
@@ -10,7 +10,7 @@ from grouphoto.errors import    POST_METHOD_ERROR, POST_METHOD_ERROR_MESSAGE, \
                                 IMAGE_ID_NOT_SET, IMAGE_ID_NOT_SET_MESSAGE, \
                                 USER_ID_NOT_SET, USER_ID_NOT_SET_MESSAGE, \
                                 USER_TOKEN_NOT_SET, USER_TOKEN_NOT_SET_MESSAGE
-from grouphoto.fields import FRIEND_ID, EVENT_ID, IMAGE_ID, USER_ID, USER_TOKEN
+from gruphoto.fields import FRIEND_ID, EVENT_ID, IMAGE_ID, USER_ID, USER_TOKEN
 
 def require_http_post(func):
     @wraps(func, assigned=available_attrs(func))

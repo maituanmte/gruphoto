@@ -1,9 +1,9 @@
 from gcomments.models import Comment
-from grouphoto.decorator import require_http_post, login_require, image_id_require
-from grouphoto.fields import PARENT_COMMENT_ID, CONTENT, COMMENT_ID, USER_ID, IMAGE_ID,\
+from gruphoto.decorator import require_http_post, login_require, image_id_require
+from gruphoto.fields import PARENT_COMMENT_ID, CONTENT, COMMENT_ID, USER_ID, IMAGE_ID,\
     NUM_REPLY
-from grouphoto.errors import NO_ERROR, ERROR_CODE, ERROR_MESSAGE, UNKNOWN_ERROR, UNKNOWN_ERROR_MESSAGE
-from grouphoto import json_http
+from gruphoto.errors import NO_ERROR, ERROR_CODE, ERROR_MESSAGE, UNKNOWN_ERROR, UNKNOWN_ERROR_MESSAGE
+from gruphoto import json_http
 
 @login_require
 @require_http_post
