@@ -65,12 +65,14 @@
             <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
                 {% if entry.is_deletion or not entry.get_admin_url %}
                     {{ entry.object_repr }}
+                {% elif not entry.is_not_deleted %}
+                    {{ entry.object_repr }}
                 {% else %}
                     <a href="{{ entry.get_admin_url }}history/">{{ entry.object_repr }}</a>
                 {% endif %}
                 <br/>
                 {% if entry.content_type %}
-                    <span class="mini quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span>
+                    <span class="mini quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %} {% if not entry.is_not_deleted and not entry.is_deletion %} (deleted){% endif %}</span>
                 {% else %}
                     <span class="mini quiet">{% trans 'Unknown content' %}</span>
                 {% endif %}

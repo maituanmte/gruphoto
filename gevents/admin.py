@@ -19,21 +19,52 @@ from django.views.decorators.csrf import csrf_protect
 from gevents.models import Image, EventUser, AbuseReport
 from gcomments.models import Comment
 
+from functools import partial
+from django.core.urlresolvers import reverse
+from django.forms import MediaDefiningClass
+
+from django.utils.safestring import mark_safe
+from django.core import urlresolvers
+
 csrf_protect_m = method_decorator(csrf_protect)
 
+class ModelAdminWithForeignKeyLinksMetaclass(MediaDefiningClass):
+
+    def __getattr__(cls, name):
+
+        def foreign_key_link(instance, field):
+            target = getattr(instance, field)
+            return u'<a href="../../%s/%s/%d">%s</a>' % (
+                target._meta.app_label, target._meta.module_name, target.id, unicode(target))
+
+        if name[:8] == 'link_to_':
+            method = partial(foreign_key_link, field=name[8:])
+            method.__name__ = name[8:]
+            method.allow_tags = True
+            setattr(cls, name, method)
+            return getattr(cls, name)
+        raise AttributeError
+
 class EventAdmin(admin.ModelAdmin):
+    __metaclass__ = ModelAdminWithForeignKeyLinksMetaclass
+
     object_history_template = 'admin/object_history.html'
-    search_fields = ('title',)
-    list_display = ('title','time_limit','created_date','modified_date','created_by','is_public','is_active')
-    list_filter = ('is_active','is_public')
+    search_fields = ('title','created_by__first_name', 'created_by__last_name')
+    list_display = ('title','time_limit','created_date','modified_date','link_to_created_by','is_public')
+    list_filter = ('is_public',)
     actions = [make_active, make_disactive]
-    readonly_fields = ('created_by','time_limit','num_likes', 'is_public' )
+    readonly_fields = ('link_to_created_by','time_limit','num_likes', 'is_public' , 'place_address', 'place_name')
 
     fieldsets = (
-        (None, {'fields': ('created_by', 'time_limit', 'is_public', 'num_likes', 'is_active')}),
+        (None, {'fields': ('link_to_created_by', 'time_limit', 'is_public', 'num_likes', 'place_address', 'place_name')}),
         )
 
     detail_form = DetailEventForm
+
+    def user_link(self, obj):
+        change_url = urlresolvers.reverse('admin:gauth_user_change', args=(obj.user.id,))
+        return mark_safe('<a href="%s">%s</a>' % (change_url, obj.user))
+    user_link.short_description = 'User'
 
     @property
     def media(self):
@@ -169,9 +200,22 @@ class ImageAdmin(admin.ModelAdmin):
         return super(ImageAdmin, self).change_view(request, object_id, form_url, more)
 
 class AbusedEventAdmin(admin.ModelAdmin):
-    search_fields = ('to', 'subject')
-    list_display = ('user', 'reporter', 'to', 'subject',)
-    #    date_hierarchy = ('created_date',)
+    __metaclass__ = ModelAdminWithForeignKeyLinksMetaclass
+
+    search_fields = ('user__first_name', 'user__last_name', 'reporter__first_name', 'reporter__last_name', 'event__title')
+    list_display = ('id', 'link_to_user', 'link_to_reporter','link_to_event', 'to', 'view')
+    readonly_fields = ('to', 'cc', 'bcc', 'subject','link_to_reporter', 'link_to_user', 'link_to_event', 'content')
+    exclude = ('user', 'event', 'reporter')
+
+    def view(self, obj):
+        url = reverse('admin:gevents_abusereport_change', args=(obj.pk,))
+        return '<a href="%s"><img src="/static/admin/img/view.png"></a>' % url
+    view.allow_tags = True
+
+#    def user_link(self, obj):
+#        change_url = urlresolvers.reverse('admin:gauth_user_change', args=(obj.user.id,))
+#        return mark_safe('<a href="%s">%s</a>' % (change_url, obj.user))
+#    user_link.short_description = 'User'
 
     def log_addition(self, request, obj):
         """

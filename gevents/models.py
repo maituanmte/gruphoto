@@ -14,8 +14,8 @@ class Event(models.Model):
     code = models.CharField(blank=True, null=True, max_length=100)
     description = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(User, related_name='created_user+')
-    is_public = models.BooleanField('active',default=True)
-    is_active = models.BooleanField('public',default=True)
+    is_public = models.BooleanField('public',default=True)
+    is_active = models.BooleanField('active',default=True)
     posted = models.BooleanField(default=False)
 
     latitude = models.FloatField(null=True, blank=True)
@@ -27,6 +27,9 @@ class Event(models.Model):
     
     def __unicode__(self):
         return self.title
+
+    def address(self):
+        return "%s %s"%(self.place_address, self.place_name)
     
 class EventUser(models.Model):
     event = models.ForeignKey(Event, related_name='event+')
@@ -54,8 +57,8 @@ class AbuseReport(models.Model):
     cc = models.CharField(max_length=1000)
     bcc = models.CharField(max_length=1000)
     subject = models.CharField(max_length=1000)
-    content = models.TextField()
-    created_date = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, related_name='user+')
     reporter = models.ForeignKey(User, related_name='reporter+')
     event = models.ForeignKey(Event, related_name='event+')
+    content = models.TextField()
+    created_date = models.DateTimeField(auto_now=True)

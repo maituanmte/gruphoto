@@ -132,6 +132,7 @@ class User(models.Model):
         """
         full_name = u'%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
+    full_name.allow_tags = True
 
     def set_password(self, raw_password):
         self.password = make_password(raw_password)

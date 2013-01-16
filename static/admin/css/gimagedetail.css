@@ -1,0 +1,85 @@
+.gevents-image #content-main{
+width:auto !important;
+}
+
+#comment_area {
+  float: right;
+  min-height: 500px;
+  width: 280px;
+}
+
+#comment_area h3 {
+  line-height: 30px;
+  margin: 0;
+  padding-left: 10px;
+}
+
+#comment_area ul {
+  margin: 2px 0 0;
+  padding: 0 !important;
+}
+
+#comment_area ul li {
+  background: none repeat scroll 0 0 #F1F2F6;
+  clear: both;
+  float: left;
+  list-style: none outside none;
+  margin-bottom: 2px;
+  min-height: 41px;
+  padding: 7px;
+}
+
+#comment_area .avatar{
+  float:left;
+}
+
+.likes {
+  background: url("../img/alls.png") no-repeat scroll 12px -52px transparent;
+  display: block;
+  float: left;
+  height: 15px;
+  width: 29px;
+}
+
+.comments {
+  background: url("../img/alls.png") no-repeat scroll 17px -19px transparent;
+  display: block;
+  float: left;
+  height: 15px;
+  width: 37px;
+}
+
+.items {
+  margin-right: 20px;
+}
+
+.creators {
+  background: url("../img/creator.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  float: left;
+  height: 15px;
+  padding-left: 20px;
+  width: 235px;
+}
+
+.gevents-image .hovercontainer {
+  float: left;
+  margin-top: 10px;
+}
+
+#image_container img{max-height:500px !important; max-width:500px !important;}
+
+.content_comment {
+  display: block;
+  float: left;
+  padding-left: 5px;
+  width: 215px;
+}
+
+#image_container{
+  margin-top: 31px;
+}
+
+p.nocomment {
+  padding-left: 10px;
+}

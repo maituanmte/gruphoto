@@ -61,7 +61,8 @@ class DetailEventForm(forms.ModelForm):
     is_public = YesNoField(label=_('Public'), required=False)
     num_likes = LabelField(label=_('Number of likes'), required=False)
     num_reports = LabelField(label=_('Number of reports'), required=False)
-    is_active = forms.CheckboxInput()
+    place_address = LabelField(label=_('Place address'), required=False)
+    place_name = LabelField(label=_('Place name'), required=False)
 
     class Meta:
         model = Event

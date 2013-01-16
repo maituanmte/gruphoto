@@ -69,10 +69,6 @@ class FrontendsRequestMiddleware(object):
         if event_id:
             try:
                 event = Event.objects.get(pk=event_id)
-                if not event.is_active:
-                    response_data[ERROR_CODE] = EVENT_BLOCKED
-                    response_data[ERROR_MESSAGE] = EVENT_BLOCKED_MESSAGE
-                    return json_http(response_data)
                 request.event = event
             except Event.DoesNotExist:
                 response_data[ERROR_CODE] = EVENT_NOT_FOUND

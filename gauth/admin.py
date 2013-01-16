@@ -2,7 +2,7 @@ from django.contrib.auth.admin import UserAdmin
 import gadmin
 from gauth.models import User
 from django.contrib import admin
-from gauth.forms import UserChangeForm, UserCreationForm
+from gauth.forms import UserChangeForm, UserCreationForm, AdminPasswordChangeForm
 from django.utils.encoding import force_unicode
 from django.contrib.admin.util import model_ngettext
 from gauth.actions import make_active, make_disactive
@@ -19,7 +19,6 @@ from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext
 from django.contrib import messages
 from django.utils.html import escape
-from django.contrib.auth.forms import AdminPasswordChangeForm
 
 class GUserAdmin(UserAdmin):
     form = UserChangeForm
@@ -46,6 +45,7 @@ class GUserAdmin(UserAdmin):
     filter_horizontal = ()
     search_fields = ('first_name', 'last_name', 'email')
     list_display = ('email', 'full_name', 'first_login', 'is_active', 'level' )
+    list_display_links = ('email', 'full_name')
     list_filter = ('is_active','level')
     ordering = ('first_name', 'last_name',)
     actions = [make_active, make_disactive]

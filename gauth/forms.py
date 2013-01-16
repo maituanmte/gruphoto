@@ -15,29 +15,9 @@ class ReadOnlyPasswordHashWidget(forms.Widget):
     def render(self, name, value, attrs):
         if hasattr(self, 'initial'):
             value = self.initial
-        encoded = value
-
-        if not is_password_usable(encoded):
-            return "None"
-
         final_attrs = self.build_attrs(attrs)
 
-        encoded = smart_str(encoded)
-
-        if len(encoded) == 32 and '$' not in encoded:
-            algorithm = 'unsalted_md5'
-        else:
-            algorithm = encoded.split('$', 1)[0]
-
-        try:
-            hasher = get_hasher(algorithm)
-        except ValueError:
-            summary = "<strong>Invalid password format or unknown hashing algorithm.</strong>"
-        else:
-            summary = ""
-            for key, value in hasher.safe_summary(encoded).iteritems():
-                summary += "<strong>%(key)s</strong>: %(value)s <br/>" % {"key": ugettext(key), "value": value}
-
+        summary = "<strong>%s</strong>" % "*****************************"
         return mark_safe("<div%(attrs)s>%(summary)s</div>" % {"attrs": flatatt(final_attrs), "summary": summary})
 
     def _has_changed(self, initial, data):
@@ -212,3 +192,37 @@ class UserChangeForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class AdminPasswordChangeForm(forms.Form):
+    """
+    A form used to change the password of a user in the admin interface.
+    """
+    error_messages = {
+        'password_mismatch': _("The two password fields didn't match."),
+        }
+    password1 = forms.CharField(label=_("Password"),
+        widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Confirm Password"),
+        widget=forms.PasswordInput)
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(AdminPasswordChangeForm, self).__init__(*args, **kwargs)
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+        if password1 and password2:
+            if password1 != password2:
+                raise forms.ValidationError(
+                    self.error_messages['password_mismatch'])
+        return password2
+
+    def save(self, commit=True):
+        """
+        Saves the new password.
+        """
+        self.user.set_password(self.cleaned_data["password1"])
+        if commit:
+            self.user.save()
+        return self.user

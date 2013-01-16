@@ -1,0 +1,42 @@
+#changelist-form .paginator{
+  clear:both !important;
+}
+
+#changelist-form .actions {
+  background: url("../img/nav-bg.gif") repeat-x scroll left top #E1E1E1 !important;
+  margin-right: 0 !important;
+  margin-top: -31px;
+}
+
+.change-list .filtered {
+  background: url("../img/changelist-bg-100.gif") repeat-y scroll right top white !important;
+}
+
+#changelist-search{
+  float:right;
+}
+
+#changelist-form{
+  margin-top: -6px !important;
+}
+
+#changelist #toolbar{
+  border-bottom:none !important;
+  height: 25px;
+}
+
+.change-list .filtered .results, .change-list .filtered .paginator, .filtered #toolbar, .filtered div.xfull {
+  margin-right: 100px !important;
+}
+
+#gcontentcontainer #changelist-filter {
+  width: 100px !important;
+}
+
+#changelist #toolbar form #searchbar {
+  width: 150px;
+}
+
+#changelist {
+  min-height: 490px !important;
+}

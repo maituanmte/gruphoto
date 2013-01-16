@@ -1,0 +1,55 @@
+#sidebar {
+  background: url("../img/nav-bg-reverse.gif") repeat-x scroll 0 -10px white;
+  display: block;
+  float: left;
+  width: 16.9%;
+}
+
+#sidebar ul {
+  margin: 0;
+  padding: 20px 0 0;
+}
+
+#sidebar ul li {
+  border-bottom: 1px solid #CCCCCC;
+  display: block;
+  line-height: 30px;
+  list-style: none outside none;
+  padding: 0;
+}
+
+#sidebar ul li a {
+  display: block;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 30.2px;
+  padding-left: 10px;
+}
+
+#sidebar ul li a:hover {
+  background:url("../img/nav-bg-reverse-nav.gif") repeat-x scroll 0 0 white
+}
+
+#gcontentcontainer {
+  border-bottom: 1px solid #CCCCCC;
+  border-left: 1px solid #CCCCCC;
+  float: right;
+  width: 83%;
+  min-height: 570px;
+}
+
+div.breadcrumbs {
+  padding: 2px 15px 3px !important;
+}
+
+.login #gcontentcontainer {
+  border-bottom: none !important;
+  border-left: none !important;
+  float: none !important;
+  width: auto !important;
+  min-height: 0 !important;
+}
+
+#login-form #id_email{
+  width: 154px;
+}

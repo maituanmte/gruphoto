@@ -1,0 +1,48 @@
+.gauth-user #user_form .form-row {
+  border: medium none !important;
+  margin-left: 345px;
+}
+
+.gauth-user #user_form .field-photo {
+  height: 205px;
+  left: 6px;
+  position: absolute;
+  width: 158px;
+}
+
+#id_photo{
+display:none;
+}
+
+#user_form label[for='id_photo']{
+  display:none;
+}
+
+#user_form .field-photo .help {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#id_photo_link {
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+#id_password{
+  display: block;
+  margin-left: 106px;
+}
+
+#user_form .field-email p {
+  font-size: 13px !important;
+  font-weight: bold;
+  padding-left: 15px !important;
+}
+
+#user_form .field-email p.help {
+  font-size: 10px !important;
+  font-weight: normal;
+  padding-left: 38px !important;
+}

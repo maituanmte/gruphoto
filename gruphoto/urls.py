@@ -16,6 +16,11 @@ from testform.views import test
 import gadmin
 gadmin.autodiscover()
 
+__all__ = ['handler404', 'handler500']
+
+handler404 = 'gadmin.views.gpage_not_found'
+handler500 = 'gadmin.views.gserver_error'
+
 urlpatterns = patterns('',
     url(r'^test$', test, name='test'),
     url(r'^api/user/login$', login, name='login'),
