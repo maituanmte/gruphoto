@@ -83,6 +83,7 @@ class User(models.Model):
     num_photo = models.IntegerField(_('number of photos'), default=0)
     num_event = models.IntegerField(_('number of events'), default=0)
     num_reports = models.IntegerField(default=0)
+    num_blocked_event = models.IntegerField(default=0)
     level = models.IntegerField(default=NONE, choices=ALERT_LEVEL)
     social_id= models.CharField(blank=True, null=True, max_length=300)
     device_token = models.CharField(null=True, blank=True, max_length=300)

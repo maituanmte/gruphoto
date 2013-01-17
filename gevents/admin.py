@@ -34,7 +34,7 @@ class ModelAdminWithForeignKeyLinksMetaclass(MediaDefiningClass):
 
         def foreign_key_link(instance, field):
             target = getattr(instance, field)
-            return u'<a href="../../%s/%s/%d">%s</a>' % (
+            return u'<a href="/admin/%s/%s/%d">%s</a>' % (
                 target._meta.app_label, target._meta.module_name, target.id, unicode(target))
 
         if name[:8] == 'link_to_':
@@ -62,7 +62,7 @@ class EventAdmin(admin.ModelAdmin):
     detail_form = DetailEventForm
 
     def user_link(self, obj):
-        change_url = urlresolvers.reverse('admin:gauth_user_change', args=(obj.user.id,))
+        change_url = urlresolvers.reverse('admin:gauth_user_change', args=(obj.created_by.id,))
         return mark_safe('<a href="%s">%s</a>' % (change_url, obj.user))
     user_link.short_description = 'User'
 
@@ -211,6 +211,7 @@ class AbusedEventAdmin(admin.ModelAdmin):
         url = reverse('admin:gevents_abusereport_change', args=(obj.pk,))
         return '<a href="%s"><img src="/static/admin/img/view.png"></a>' % url
     view.allow_tags = True
+    view.short_description = 'View'
 
 #    def user_link(self, obj):
 #        change_url = urlresolvers.reverse('admin:gauth_user_change', args=(obj.user.id,))

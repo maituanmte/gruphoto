@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+import os
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -67,3 +68,9 @@ if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     # this take cares of static media (i.e. bundled in apps, and specified in settings)
     urlpatterns+= staticfiles_urlpatterns()
+
+if settings.DEBUG: # defined in manage.py when the first arg is "runserver"
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
+        (r'^media-admin/(?P<path>.*)$', 'django.views.static.serve',{'document_root': os.path.join(settings.MEDIA_ROOT, '..', settings.ADMIN_MEDIA_PREFIX)}),
+    )

@@ -6,12 +6,14 @@ from django.utils.functional import SimpleLazyObject
 from gruphoto import json_http
 from gruphoto.errors import USER_NOT_FOUND, USER_NOT_FOUND_MESSAGE, USER_BLOCKED, USER_BLOCKED_MESSAGE, \
      FRIEND_NOT_FOUND, FRIEND_NOT_FOUND_MESSAGE, FRIEND_BLOCKED, FRIEND_BLOCKED_MESSAGE, \
-     EVENT_NOT_FOUND, EVENT_NOT_FOUND_MESSAGE, EVENT_BLOCKED, EVENT_BLOCKED_MESSAGE, \
+     EVENT_NOT_FOUND, EVENT_NOT_FOUND_MESSAGE,\
      IMAGE_NOT_FOUND, IMAGE_NOT_FOUND_MESSAGE, PARENT_COMMENT_NOT_FOUND, PARENT_COMMENT_NOT_FOUND_MESSAGE, \
      ERROR_MESSAGE, ERROR_CODE
 from gruphoto.fields import USER_TOKEN, FRIEND_ID, IMAGE_ID, USER_ID, PARENT_COMMENT_ID, EVENT_ID
 
-
+from django.contrib.sessions.middleware import SessionMiddleware
+from django.utils.importlib import import_module
+from django.conf import settings
 
 def get_user(request):
     if not hasattr(request, '_cached_user'):
@@ -94,3 +96,12 @@ class FrontendsRequestMiddleware(object):
                 response_data[ERROR_CODE] = PARENT_COMMENT_NOT_FOUND
                 response_data[ERROR_MESSAGE] = PARENT_COMMENT_NOT_FOUND_MESSAGE
                 return json_http(response_data)
+
+class GSessionMiddleware(SessionMiddleware):
+    def process_request(self, request):
+        engine = import_module(settings.SESSION_ENGINE)
+        session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
+        if session_key is None:
+            session_key = request.POST.get(USER_TOKEN, None)
+
+        request.session = engine.SessionStore(session_key)
