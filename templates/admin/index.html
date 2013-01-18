@@ -15,10 +15,8 @@
 
 {% block content %}
 <div id="content-main">
-
-
         <div id="changelist" class="module">
-        <table summary="{% blocktrans with name=app.name %}Models available in the {{ name }} application.{% endblocktrans %}">
+        <table summary="{% blocktrans %}List of abused users{% endblocktrans %}">
         <caption>{% blocktrans %}Abused Users{% endblocktrans %}</caption>
         {% if abused_user_list %}
             <thead>

@@ -5,6 +5,7 @@
     <div class="hovercontainer">
         <div class="left"><span>{{ image.num_likes }}</span> <img src="/static/admin/img/likes.png" /></div>
         <div class="right"><span>{{ image.num_comments }}</span><img src="/static/admin/img/comments.png" /></div>
+        <a class="uploaded" href="/admin/gauth/user/{{ image.owner.id }}/">{{ image.owner }}</a>
     </div>
 </div>
 {% endfor %}

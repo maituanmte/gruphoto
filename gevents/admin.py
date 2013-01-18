@@ -4,7 +4,6 @@ from django import forms
 import gadmin
 from gevents.models import Event
 from django.utils.encoding import force_unicode
-from gauth.actions import make_active, make_disactive
 from django.shortcuts import get_object_or_404
 from django.contrib.admin.models import ContentType
 from django.contrib.admin.util import unquote
@@ -29,15 +28,12 @@ csrf_protect_m = method_decorator(csrf_protect)
 class EventAdmin(admin.ModelAdmin):
     object_history_template = 'admin/object_history.html'
     search_fields = ('title','created_by__first_name', 'created_by__last_name')
-    list_display = ('title','time_limit','created_date','modified_date','user_link','is_public')
+    list_display = ('title','list_time_limit_h','created_date','modified_date','user_link','is_public')
     list_filter = ('is_public',)
-    actions = [make_active, make_disactive]
-    readonly_fields = ('user_link','time_limit','num_likes', 'is_public' , 'place_address', 'place_name')
-
+    readonly_fields = ('user_link','time_limit_h','num_like_image', 'is_public' , 'place_address', 'place_name')
     fieldsets = (
-        (None, {'fields': ('user_link', 'time_limit', 'is_public', 'num_likes', 'place_address', 'place_name')}),
-        )
-
+        (None, {'fields': ('user_link', 'time_limit_h', 'is_public', 'num_like_image', 'place_address', 'place_name')}),
+    )
     detail_form = DetailEventForm
 
     def user_link(self, obj):
@@ -45,6 +41,21 @@ class EventAdmin(admin.ModelAdmin):
         return mark_safe(u'<a href="%s">%s</a>' % (change_url, obj.created_by))
     user_link.allow_tags = True
     user_link.short_description = 'Created by'
+
+    def time_limit_h(self, obj):
+        return mark_safe(u'%s h' % obj.time_limit)
+    time_limit_h.allow_tags = True
+    time_limit_h.short_description = 'Time limit'
+
+    def list_time_limit_h(self, obj):
+        return self.time_limit_h(obj)
+    list_time_limit_h.allow_tags = True
+    list_time_limit_h.short_description = 'Time limit(h)'
+
+    def num_like_image(self, obj):
+        return mark_safe(u'<div class="likes">%s</div>' % obj.num_likes)
+    num_like_image.allow_tags = True
+    num_like_image.short_description = 'Likes'
 
     @property
     def media(self):

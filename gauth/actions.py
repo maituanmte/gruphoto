@@ -23,7 +23,7 @@ def make_disactive(modeladmin, request, queryset):
             obj_display = force_unicode(obj)
             modeladmin.log_change(request, obj, obj_display)
         queryset.update(is_active=False)
-        modeladmin.message_user(request, _("Successfully updated %(count)d %(items)s as disactive.") % {
+        modeladmin.message_user(request, _("Successfully updated %(count)d %(items)s as inactive.") % {
             "count": n, "items": model_ngettext(modeladmin.opts, n)
         })
     # Return None to display the change list page again.

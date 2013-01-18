@@ -62,3 +62,6 @@ class AbuseReport(models.Model):
     event = models.ForeignKey(Event, related_name='event+')
     content = models.TextField()
     created_date = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return 'From %s to %s in "%s" event'% (self.reporter, self.user, self.event)

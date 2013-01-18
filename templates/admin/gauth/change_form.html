@@ -65,11 +65,21 @@
 {% block after_related_objects %}{% endblock %}
 
 {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
-
+{% if change %}
+    <div id="followers" class="module followers">
+    <h2>Followers</h2>
+        {% if followers %}
+            <div id="followers_container">
+                {% include "admin/gauth/followers.html" with static_url=static %}
+            </div>
+        {% else %}
+            <p class="no_followers">{% blocktrans %}There is no follower{% endblocktrans %}</p>
+        {% endif %}
+    </div>
+{% endif %}
 {% if adminform and add %}
    <script type="text/javascript">document.getElementById("{{ adminform.first_field.id_for_label }}").focus();</script>
 {% endif %}
-
 {# JavaScript for prepopulated fields #}
 {% prepopulated_fields_js %}
 
