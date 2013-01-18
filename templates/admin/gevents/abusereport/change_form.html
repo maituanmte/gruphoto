@@ -33,6 +33,7 @@
 {% if change %}{% if not is_popup %}
   <ul class="object-tools">
     {% block object-tools-items %}
+        <li><a href="block/" class="blocklink">{% if not blocked %}{% trans "Block user" %}{% else %}{% trans "Unblock user" %}{% endif %}</a></li>
     <li><a href="delete/" class="deletelink">{% trans "Delete" %}</a></li>
     {% endblock %}
   </ul>

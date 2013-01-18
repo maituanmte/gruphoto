@@ -18,53 +18,33 @@ from django.db import transaction
 from django.views.decorators.csrf import csrf_protect
 from gevents.models import Image, EventUser, AbuseReport
 from gcomments.models import Comment
-
-from functools import partial
+from django.http import Http404, HttpResponseRedirect
+from django.utils.html import escape
 from django.core.urlresolvers import reverse
-from django.forms import MediaDefiningClass
-
 from django.utils.safestring import mark_safe
 from django.core import urlresolvers
 
 csrf_protect_m = method_decorator(csrf_protect)
 
-class ModelAdminWithForeignKeyLinksMetaclass(MediaDefiningClass):
-
-    def __getattr__(cls, name):
-
-        def foreign_key_link(instance, field):
-            target = getattr(instance, field)
-            return u'<a href="/admin/%s/%s/%d">%s</a>' % (
-                target._meta.app_label, target._meta.module_name, target.id, unicode(target))
-
-        if name[:8] == 'link_to_':
-            method = partial(foreign_key_link, field=name[8:])
-            method.__name__ = name[8:]
-            method.allow_tags = True
-            setattr(cls, name, method)
-            return getattr(cls, name)
-        raise AttributeError
-
 class EventAdmin(admin.ModelAdmin):
-    __metaclass__ = ModelAdminWithForeignKeyLinksMetaclass
-
     object_history_template = 'admin/object_history.html'
     search_fields = ('title','created_by__first_name', 'created_by__last_name')
-    list_display = ('title','time_limit','created_date','modified_date','link_to_created_by','is_public')
+    list_display = ('title','time_limit','created_date','modified_date','user_link','is_public')
     list_filter = ('is_public',)
     actions = [make_active, make_disactive]
-    readonly_fields = ('link_to_created_by','time_limit','num_likes', 'is_public' , 'place_address', 'place_name')
+    readonly_fields = ('user_link','time_limit','num_likes', 'is_public' , 'place_address', 'place_name')
 
     fieldsets = (
-        (None, {'fields': ('link_to_created_by', 'time_limit', 'is_public', 'num_likes', 'place_address', 'place_name')}),
+        (None, {'fields': ('user_link', 'time_limit', 'is_public', 'num_likes', 'place_address', 'place_name')}),
         )
 
     detail_form = DetailEventForm
 
     def user_link(self, obj):
         change_url = urlresolvers.reverse('admin:gauth_user_change', args=(obj.created_by.id,))
-        return mark_safe('<a href="%s">%s</a>' % (change_url, obj.user))
-    user_link.short_description = 'User'
+        return mark_safe(u'<a href="%s">%s</a>' % (change_url, obj.created_by))
+    user_link.allow_tags = True
+    user_link.short_description = 'Created by'
 
     @property
     def media(self):
@@ -200,23 +180,41 @@ class ImageAdmin(admin.ModelAdmin):
         return super(ImageAdmin, self).change_view(request, object_id, form_url, more)
 
 class AbusedEventAdmin(admin.ModelAdmin):
-    __metaclass__ = ModelAdminWithForeignKeyLinksMetaclass
-
     search_fields = ('user__first_name', 'user__last_name', 'reporter__first_name', 'reporter__last_name', 'event__title')
-    list_display = ('id', 'link_to_user', 'link_to_reporter','link_to_event', 'to', 'view')
-    readonly_fields = ('to', 'cc', 'bcc', 'subject','link_to_reporter', 'link_to_user', 'link_to_event', 'content')
+    list_display = ('id', 'user_link', 'reporter_link','event_link', 'to', 'view')
+    readonly_fields = ('to', 'cc', 'bcc', 'subject','reporter_link', 'user_link', 'event_link', 'content')
     exclude = ('user', 'event', 'reporter')
 
     def view(self, obj):
         url = reverse('admin:gevents_abusereport_change', args=(obj.pk,))
-        return '<a href="%s"><img src="/static/admin/img/view.png"></a>' % url
+        return mark_safe(u'<a href="%s"><img src="/static/admin/img/view.png"></a>' % url)
     view.allow_tags = True
     view.short_description = 'View'
 
-#    def user_link(self, obj):
-#        change_url = urlresolvers.reverse('admin:gauth_user_change', args=(obj.user.id,))
-#        return mark_safe('<a href="%s">%s</a>' % (change_url, obj.user))
-#    user_link.short_description = 'User'
+    def user_link(self, obj):
+        change_url = urlresolvers.reverse('admin:gauth_user_change', args=(obj.user.id,))
+        return mark_safe(u'<a href="%s">%s</a>' % (change_url, obj.user))
+    user_link.allow_tags = True
+    user_link.short_description = 'User'
+
+    def reporter_link(self, obj):
+        change_url = urlresolvers.reverse('admin:gauth_user_change', args=(obj.reporter.id,))
+        return mark_safe(u'<a href="%s">%s</a>' % (change_url, obj.reporter))
+    reporter_link.allow_tags = True
+    reporter_link.short_description = 'Reporter'
+
+    def event_link(self, obj):
+        change_url = urlresolvers.reverse('admin:gevents_event_change', args=(obj.event.id,))
+        return mark_safe(u'<a href="%s">%s</a>' % (change_url, obj.event))
+    event_link.allow_tags = True
+    event_link.short_description = 'Reporter'
+
+    def get_urls(self):
+        from django.conf.urls import patterns, url
+        urls = super(AbusedEventAdmin, self).get_urls()
+        info = self.model._meta.app_label, self.model._meta.module_name
+        urlpatterns = patterns('',url(r'^(.+)/block/$', self.admin_site.admin_view(self.block_view), name='%s_%s_block' % info),)
+        return  urlpatterns + urls
 
     def log_addition(self, request, obj):
         """
@@ -269,6 +267,45 @@ class AbusedEventAdmin(admin.ModelAdmin):
             object_repr     = object_repr,
             action_flag     = DELETION
         )
+
+    @csrf_protect_m
+    @transaction.commit_on_success
+    def block_view(self, request, object_id):
+        opts = self.model._meta
+        obj = self.get_object(request, unquote(object_id))
+
+        if obj is None:
+            raise Http404(_('%(name)s object with primary key %(key)r does not exist.') % {'name': force_unicode(opts.verbose_name), 'key': escape(object_id)})
+        from gevents.models import EventUser
+        user = obj.user
+        event = obj.event
+        event_user, created = EventUser.objects.get_or_create(user=user, event=event)
+        event_user.blocked = not event_user.blocked
+        event_user.save()
+        if event_user.blocked:
+            user.num_blocked_event += 1
+        else:
+            user.num_blocked_event -= 1
+        user.save()
+
+        return HttpResponseRedirect(request.path.replace('block/',''))
+
+    @csrf_protect_m
+    @transaction.commit_on_success
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        opts = self.model._meta
+        obj = self.get_object(request, unquote(object_id))
+        if obj is None:
+            raise Http404(_('%(name)s object with primary key %(key)r does not exist.') % {'name': force_unicode(opts.verbose_name), 'key': escape(object_id)})
+        from gevents.models import EventUser
+        user = obj.user
+        event = obj.event
+        event_user, created = EventUser.objects.get_or_create(user=user, event=event)
+        more = {'blocked':event_user.blocked}
+
+        more.update(extra_context or {})
+        return super(AbusedEventAdmin, self).change_view(request, object_id, form_url, extra_context=more)
+
     
 gadmin.site.register(Event, EventAdmin)
 gadmin.site.register(Image, ImageAdmin)
